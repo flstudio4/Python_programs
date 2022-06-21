@@ -53,7 +53,7 @@ clear_button = Button(frame1, text="Clear", command=clear)
 clear_button.grid(column=1, row=3, padx=20, pady=15)
 result_label = Label(frame, text="", font=("Arial", 10, "bold"), bg="#b8c1c2")
 result_label.pack(padx=15, pady=10)
-legal_label = Label(frame, text="Dmitrii Sumenko design, 2022", font=("Arial", 10), bg="#b8c1c2")
+legal_label = Label(frame, text="Dmitrii Sumenko design, 2022", font=("Arial", 10), bg="#b8c1c2", state=DISABLED)
 legal_label.pack(padx=15, pady=15)
 
 window.mainloop()
