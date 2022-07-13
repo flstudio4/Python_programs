@@ -34,13 +34,26 @@ def update_by_id(id_num, last, first, phone):
     connection.commit()
 
 
+def create_id():
+    my_cursor = connection.cursor()
+    my_data_query = "select * from contact_entries"
+    my_cursor.execute(my_data_query)
+    my_data = cursor.fetchall()
+    counter = 0
+    for line in my_data:
+        if counter < line[0]:
+            counter = line[0]
+    return counter + 1
+
+
 def create():
+    id_num = create_id()
     first = input("Enter first name: ").strip().title()
     last = input("Enter last name: ").strip().title()
     cell = input("Enter cellphone number: ").strip().title()
     my_cursor = connection.cursor()
-    user_query = "INSERT INTO contact_entries (l_name, f_name, cellphone_number) VALUES (%s, %s, %s)"
-    data = (last, first, cell)
+    user_query = "INSERT INTO contact_entries (id, l_name, f_name, cellphone_number) VALUES (%s, %s, %s, %s)"
+    data = (id_num, last, first, cell)
     my_cursor.execute(user_query, data)
     connection.commit()
 
