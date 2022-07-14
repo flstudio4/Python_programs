@@ -22,7 +22,7 @@ def update_contact_window():
         cursor.execute(my_data_query)
         my_data = cursor.fetchall()
         for line in my_data:
-            tree.insert('', 'end', values=(line[0], line[2], line[1], line[3]))
+            tree.insert('', 'end', values=(line[0], line[2], line[1], line[4]))
 
     def update_contact():
         count = 0
@@ -106,7 +106,7 @@ def create_new_contact_window():
         i_cursor.execute(my_data_query)
         my_data = i_cursor.fetchall()
         for line in my_data:
-            tree.insert('', 'end', values=(line[0], line[2], line[1], line[3]))
+            tree.insert('', 'end', values=(line[0], line[1], line[2], line[3]))
 
     def create_id():
         cursor = connection.cursor()
@@ -125,7 +125,7 @@ def create_new_contact_window():
         cell = phone_number.get().strip()
         cursor = connection.cursor()
         if first != "" and last != "" and cell != "":
-            user_query = "INSERT INTO contact_entries (id, l_name, f_name, cellphone_number) VALUES (%s, %s, %s, %s)"
+            user_query = "INSERT INTO contact_entries (id, f_name, l_name, cellphone_number) VALUES (%s, %s, %s, %s)"
             my_data = (create_id(), first, last, cell)
             cursor.execute(user_query, my_data)
             connection.commit()
