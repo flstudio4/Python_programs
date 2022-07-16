@@ -256,8 +256,13 @@ def button_equals():
 
 def multiply():
     global result
+    global e
     result = (first_value * second_value)
-    text_var.set(rounding_results(result))
+    if len(str(result)) > 16:
+        text_var.set("e")
+        e = True
+    if len(str(result)) <= 16:
+        text_var.set(rounding_results(result))
 
 
 def division():
@@ -266,28 +271,46 @@ def division():
     if second_value != 0:
         result = (first_value / second_value)
         text_var.set(rounding_results(result))
-    if second_value == 0:
+    if second_value == 0 or len(str(result)) > 16:
         text_var.set("e")
         e = True
 
 
 def addition():
     global result
+    global e
     result = (first_value + second_value)
-    text_var.set(rounding_results(result))
+    if len(str(result)) > 16:
+        text_var.set("e")
+        e = True
+    if len(str(result)) <= 16:
+        text_var.set(rounding_results(result))
 
 
 def subtraction():
     global result
+    global e
     result = first_value - second_value
-    text_var.set(rounding_results(result))
+    if len(str(result)) > 16:
+        text_var.set("e")
+        e = True
+    if len(str(result)) <= 16:
+        text_var.set(rounding_results(result))
 
 
 def percentage():
     global result
+    global e
     if second_value != 0:
         result = (first_value / second_value * 100)
-        text_var.set(rounding_results(result))
+        if len(str(result)) > 16:
+            text_var.set("e")
+            e = True
+        if len(str(result)) <= 16:
+            text_var.set(rounding_results(result))
+    if second_value == 0:
+        text_var.set("e")
+        e = True
 
 
 window = Tk()
