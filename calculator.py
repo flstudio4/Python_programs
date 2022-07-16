@@ -186,10 +186,12 @@ def button_equals():
     global subtraction_pressed
     global percent_pressed
     global block
+    global e
 
     if not e:
         if text_var.get() == "":
             second_value = first_value
+            block = True
         if text_var.get() != "":
             second_value = float(text_var.get())
             equals_pressed = True
