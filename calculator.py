@@ -164,7 +164,8 @@ def button_C():
 
 
 def button_del():
-    entry_field.delete(len(text_var.get()) - 1, END)
+    if not block:
+        entry_field.delete(len(text_var.get()) - 1, END)
 
 
 def button_equals():
