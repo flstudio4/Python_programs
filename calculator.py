@@ -119,18 +119,18 @@ def button_multiply():
 
 def button_division():
     if not e:
-        common()
         global block
         global div_pressed
+        common()
         div_pressed = True
         block = False
 
 
 def button_addition():
     if not e:
-        common()
         global block
         global sum_pressed
+        common()
         sum_pressed = True
         block = False
 
