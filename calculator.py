@@ -12,6 +12,7 @@ subtraction_pressed = False
 percent_pressed = False
 equals_pressed = False
 block = False
+e = False
 
 
 def button_1():
@@ -99,43 +100,48 @@ def common():
 
 
 def button_percent():
-    common()
-    global block
-    global percent_pressed
-    percent_pressed = True
-    block = False
+    if not e:
+        common()
+        global block
+        global percent_pressed
+        percent_pressed = True
+        block = False
 
 
 def button_multiply():
-    common()
-    global block
-    global multiplication_pressed
-    multiplication_pressed = True
-    block = False
+    if not e:
+        common()
+        global block
+        global multiplication_pressed
+        multiplication_pressed = True
+        block = False
 
 
 def button_division():
-    common()
-    global block
-    global div_pressed
-    div_pressed = True
-    block = False
+    if not e:
+        common()
+        global block
+        global div_pressed
+        div_pressed = True
+        block = False
 
 
 def button_addition():
-    common()
-    global block
-    global sum_pressed
-    sum_pressed = True
-    block = False
+    if not e:
+        common()
+        global block
+        global sum_pressed
+        sum_pressed = True
+        block = False
 
 
 def button_distraction():
-    common()
-    global block
-    global subtraction_pressed
-    subtraction_pressed = True
-    block = False
+    if not e:
+        common()
+        global block
+        global subtraction_pressed
+        subtraction_pressed = True
+        block = False
 
 
 def button_C():
@@ -149,6 +155,7 @@ def button_C():
     global percent_pressed
     global equals_pressed
     global block
+    global e
 
     entry_field.delete(0, END)
     is_dot_entered = False
@@ -161,10 +168,11 @@ def button_C():
     percent_pressed = False
     equals_pressed = False
     block = False
+    e = False
 
 
 def button_del():
-    if not block:
+    if not block and not e:
         entry_field.delete(len(text_var.get()) - 1, END)
 
 
@@ -179,36 +187,37 @@ def button_equals():
     global percent_pressed
     global block
 
-    if text_var.get() == "":
-        second_value = first_value
-    if text_var.get() != "":
-        second_value = float(text_var.get())
-        equals_pressed = True
+    if not e:
+        if text_var.get() == "":
+            second_value = first_value
+        if text_var.get() != "":
+            second_value = float(text_var.get())
+            equals_pressed = True
 
-    if multiplication_pressed:
-        multiply()
-        multiplication_pressed = False
+        if multiplication_pressed:
+            multiply()
+            multiplication_pressed = False
 
-    if div_pressed:
-        division()
-        div_pressed = False
+        if div_pressed:
+            division()
+            div_pressed = False
 
-    if sum_pressed:
-        addition()
-        sum_pressed = False
+        if sum_pressed:
+            addition()
+            sum_pressed = False
 
-    if subtraction_pressed:
-        subtraction()
-        subtraction_pressed = False
+        if subtraction_pressed:
+            subtraction()
+            subtraction_pressed = False
 
-    if percent_pressed:
-        percentage()
-        percent_pressed = False
+        if percent_pressed:
+            percentage()
+            percent_pressed = False
 
-    if equals_pressed:
-        first_value = result
-        equals_pressed = False
-        block = True
+        if equals_pressed:
+            first_value = result
+            equals_pressed = False
+            block = True
 
 
 def multiply():
@@ -219,9 +228,13 @@ def multiply():
 
 def division():
     global result
+    global e
     if second_value != 0:
         result = round((first_value / second_value), 10)
         text_var.set(result)
+    if second_value == 0:
+        text_var.set("e")
+        e = True
 
 
 def addition():
