@@ -15,56 +15,88 @@ block = False
 e = False
 
 
+def rounding_results(value):
+    if int(value) < 10:
+        value = round(value, 14)
+    if 10 < int(value) < 100:
+        value = round(value, 13)
+    if 100 < int(value) < 1000:
+        value = round(value, 12)
+    if 1000 < int(value) < 10000:
+        value = round(value, 12)
+    if 10000 < int(value) < 100000:
+        value = round(value, 10)
+    if 100000 < int(value) < 1000000:
+        value = round(value, 9)
+    if 1000000 < int(value) < 10000000:
+        value = round(value, 8)
+    if 10000000 < int(value) < 100000000:
+        value = round(value, 7)
+    if 100000000 < int(value) < 1000000000:
+        value = round(value, 6)
+    if 1000000000 < int(value) < 10000000000:
+        value = round(value, 5)
+    if 10000000000 < int(value) < 100000000000:
+        value = round(value, 4)
+    if 100000000000 < int(value) < 1000000000000:
+        value = round(value, 3)
+    if 1000000000000 < int(value) < 10000000000000:
+        value = round(value, 2)
+    if 10000000000000 < int(value) < 100000000000000:
+        value = round(value, 1)
+    return value
+
+
 def button_1():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(1)
         text_var.set(value)
 
 
 def button_2():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(2)
         text_var.set(value)
 
 
 def button_3():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(3)
         text_var.set(value)
 
 
 def button_4():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(4)
         text_var.set(value)
 
 
 def button_5():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(5)
         text_var.set(value)
 
 
 def button_6():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(6)
         text_var.set(value)
 
 
 def button_7():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(7)
         text_var.set(value)
 
 
 def button_8():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(8)
         text_var.set(value)
 
 
 def button_9():
-    if len(text_var.get()) < string_length and not block:
+    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
         value = text_var.get() + str(9)
         text_var.set(value)
 
@@ -224,16 +256,16 @@ def button_equals():
 
 def multiply():
     global result
-    result = round((first_value * second_value), 10)
-    text_var.set(result)
+    result = (first_value * second_value)
+    text_var.set(rounding_results(result))
 
 
 def division():
     global result
     global e
     if second_value != 0:
-        result = round((first_value / second_value), 10)
-        text_var.set(result)
+        result = (first_value / second_value)
+        text_var.set(rounding_results(result))
     if second_value == 0:
         text_var.set("e")
         e = True
@@ -241,21 +273,21 @@ def division():
 
 def addition():
     global result
-    result = round((first_value + second_value), 10)
-    text_var.set(result)
+    result = (first_value + second_value)
+    text_var.set(rounding_results(result))
 
 
 def subtraction():
     global result
-    result = round((first_value - second_value), 10)
-    text_var.set(result)
+    result = first_value - second_value
+    text_var.set(rounding_results(result))
 
 
 def percentage():
     global result
     if second_value != 0:
         result = (first_value / second_value * 100)
-        text_var.set(result)
+        text_var.set(rounding_results(result))
 
 
 window = Tk()
