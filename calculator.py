@@ -15,7 +15,7 @@ block = False
 e = False
 
 
-def rounding_results(value):
+def output_format(value):
     if int(value) < 10:
         value = round(value, 14)
     if 10 < int(value) < 100:
@@ -262,7 +262,7 @@ def multiply():
         text_var.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(rounding_results(result))
+        text_var.set(output_format(result))
 
 
 def division():
@@ -270,7 +270,7 @@ def division():
     global e
     if second_value != 0:
         result = (first_value / second_value)
-        text_var.set(rounding_results(result))
+        text_var.set(output_format(result))
     if second_value == 0 or len(str(result)) > 16:
         text_var.set("e")
         e = True
@@ -284,7 +284,7 @@ def addition():
         text_var.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(rounding_results(result))
+        text_var.set(output_format(result))
 
 
 def subtraction():
@@ -295,7 +295,7 @@ def subtraction():
         text_var.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(rounding_results(result))
+        text_var.set(output_format(result))
 
 
 def percentage():
@@ -307,7 +307,7 @@ def percentage():
             text_var.set("e")
             e = True
         if len(str(result)) <= 16:
-            text_var.set(rounding_results(result))
+            text_var.set(output_format(result))
     if second_value == 0:
         text_var.set("e")
         e = True
