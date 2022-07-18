@@ -48,86 +48,86 @@ def output_format(value):
 
 
 def button_1():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(1)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(1)
+        text.set(value)
 
 
 def button_2():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(2)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(2)
+        text.set(value)
 
 
 def button_3():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(3)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(3)
+        text.set(value)
 
 
 def button_4():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(4)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(4)
+        text.set(value)
 
 
 def button_5():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(5)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(5)
+        text.set(value)
 
 
 def button_6():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(6)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(6)
+        text.set(value)
 
 
 def button_7():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(7)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(7)
+        text.set(value)
 
 
 def button_8():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(8)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(8)
+        text.set(value)
 
 
 def button_9():
-    if len(text_var.get()) < string_length and not block and text_var.get() != "0":
-        value = text_var.get() + str(9)
-        text_var.set(value)
+    if len(text.get()) < string_length and not block and text.get() != "0":
+        value = text.get() + str(9)
+        text.set(value)
 
 
 def button_0():
-    if text_var.get() != "-0" and text_var.get() != "0" and not block:
-        if len(text_var.get()) < string_length:
-            value = text_var.get() + str(0)
-            text_var.set(value)
+    if text.get() != "-0" and text.get() != "0" and not block:
+        if len(text.get()) < string_length:
+            value = text.get() + str(0)
+            text.set(value)
 
 
 def button_plus_min():
-    if len(text_var.get()) < string_length and text_var.get() == "" and not block:
-        value = text_var.get() + str("-")
-        text_var.set(value)
+    if len(text.get()) < string_length and text.get() == "" and not block:
+        value = text.get() + str("-")
+        text.set(value)
 
 
 def button_dot():
     global is_dot_entered
-    if len(text_var.get()) < string_length and not is_dot_entered and not block:
-        value = text_var.get() + str(".")
-        text_var.set(value)
+    if len(text.get()) < string_length and not is_dot_entered and not block:
+        value = text.get() + str(".")
+        text.set(value)
         is_dot_entered = True
 
 
 def common():
     global is_dot_entered
-    if text_var.get() != "":
+    if text.get() != "":
         global first_value
-        first_value = float(text_var.get())
-        text_var.set("")
+        first_value = float(text.get())
+        text.set("")
     is_dot_entered = False
 
 
@@ -205,7 +205,7 @@ def button_C():
 
 def button_del():
     if not block and not e:
-        entry_field.delete(len(text_var.get()) - 1, END)
+        entry_field.delete(len(text.get()) - 1, END)
 
 
 def button_equals():
@@ -221,11 +221,11 @@ def button_equals():
     global e
 
     if not e:
-        if text_var.get() == "":
+        if text.get() == "":
             second_value = first_value
             block = True
-        if text_var.get() != "":
-            second_value = float(text_var.get())
+        if text.get() != "":
+            second_value = float(text.get())
             equals_pressed = True
 
         if multiplication_pressed:
@@ -259,20 +259,26 @@ def multiply():
     global e
     result = (first_value * second_value)
     if len(str(result)) > 16:
-        text_var.set("e")
+        text.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(output_format(result))
+        if str(result)[-2:] == ".0":
+            text.set(int(result))
+        else:
+            text.set(output_format(result))
 
 
 def division():
     global result
     global e
+    result = (first_value / second_value)
     if second_value != 0:
-        result = (first_value / second_value)
-        text_var.set(output_format(result))
+        if str(result)[-2:] == ".0":
+            text.set(int(result))
+        else:
+            text.set(output_format(result))
     if second_value == 0 or len(str(result)) > 16:
-        text_var.set("e")
+        text.set("e")
         e = True
 
 
@@ -281,10 +287,13 @@ def addition():
     global e
     result = (first_value + second_value)
     if len(str(result)) > 16:
-        text_var.set("e")
+        text.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(output_format(result))
+        if str(result)[-2:] == ".0":
+            text.set(int(result))
+        else:
+            text.set(output_format(result))
 
 
 def subtraction():
@@ -292,10 +301,13 @@ def subtraction():
     global e
     result = first_value - second_value
     if len(str(result)) > 16:
-        text_var.set("e")
+        text.set("e")
         e = True
     if len(str(result)) <= 16:
-        text_var.set(output_format(result))
+        if str(result)[-2:] == ".0":
+            text.set(int(result))
+        else:
+            text.set(output_format(result))
 
 
 def percentage():
@@ -303,14 +315,14 @@ def percentage():
     global e
     if second_value != 0:
         result = (first_value / second_value * 100)
-        if len(str(result)) > 16:
-            text_var.set("e")
+        if len(str(result)) > 16 or second_value == 0:
+            text.set("e")
             e = True
         if len(str(result)) <= 16:
-            text_var.set(output_format(result))
-    if second_value == 0:
-        text_var.set("e")
-        e = True
+            if str(result)[-2:] == ".0":
+                text.set(int(result))
+            else:
+                text.set(output_format(result))
 
 
 window = Tk()
@@ -318,7 +330,7 @@ window.title("Calculator")
 window.geometry("300x350")
 window.config(bg="light gray")
 window.resizable(0, 0)
-text_var = StringVar()
+text = StringVar()
 upper_frame = Frame(window, bg="light gray")
 upper_frame.pack()
 
@@ -326,7 +338,7 @@ bottom_frame = Frame(window, bg="light gray")
 bottom_frame.pack()
 
 entry_field = Entry(upper_frame, state=NORMAL, width=16, font=("Lucida Console", 18, "bold"),
-                    highlightthickness=2, textvariable=text_var)
+                    highlightthickness=2, textvariable=text)
 entry_field.configure(highlightbackground="gray", highlightcolor="gray")
 entry_field.pack(padx=15, pady=15)
 
