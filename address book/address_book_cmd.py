@@ -3,7 +3,7 @@
 import mysql.connector
 
 # need to change to real user name and password that you use in workbench(not root user)
-connection = mysql.connector.connect(host="localhost", database="contacts", user="user_name", password="password")
+connection = mysql.connector.connect(host="localhost", database="contacts", user="flstudio4", password="Dimka1985!")
 
 
 def contact_lookup():
@@ -28,9 +28,11 @@ def delete_by_id(id_number):
     connection.commit()
 
 
-def update_by_id(id_num, last, first, phone):
-    update_query = "UPDATE contact_entries SET l_name = %s, f_name = %s, cellphone_number = %s WHERE id = %s"
-    cursor.execute(update_query, (id_num, last, first, phone))
+def update_by_id(first, last, phone, id_num):
+    my_cursor = connection.cursor()
+    update_query = "UPDATE contact_entries SET f_name = %s, l_name = %s, cellphone_number = %s WHERE id = %s"
+    my_data = (first, last, phone, id_num)
+    my_cursor.execute(update_query, my_data)
     connection.commit()
 
 
@@ -102,7 +104,7 @@ while entry != "6":
                 first_name = input("Enter first name: ").strip().title()
                 last_name = input("Enter last name: ").strip().title()
                 cell_phone = input("Enter cellphone number: ").strip().title()
-                update_by_id(user_id, last_name, first_name, cell_phone)
+                update_by_id(first_name, last_name, cell_phone, user_id)
         print("Entry updated.")
 
     if entry == "5":    # Delete a contact
