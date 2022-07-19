@@ -271,8 +271,8 @@ def multiply():
 def division():
     global result
     global e
-    result = (first_value / second_value)
     if second_value != 0:
+        result = (first_value / second_value)
         if str(result)[-2:] == ".0":
             text.set(int(result))
         else:
@@ -323,6 +323,9 @@ def percentage():
                 text.set(int(result))
             else:
                 text.set(output_format(result))
+    if second_value == 0:
+        text.set("e")
+        e = True
 
 
 window = Tk()
