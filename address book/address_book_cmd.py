@@ -3,7 +3,7 @@
 import mysql.connector
 
 # need to change to real user name and password that you use in workbench(not root user)
-connection = mysql.connector.connect(host="localhost", database="contacts", user="flstudio4", password="Dimka1985!")
+connection = mysql.connector.connect(host="localhost", database="contacts", user="*****", password="*****")
 
 
 def contact_lookup():
