@@ -6,7 +6,7 @@ from tkinter.ttk import Treeview
 
 import mysql.connector
 
-connection = mysql.connector.connect(host="localhost", database="contacts", user="flstudio4", password="Dimka1985!")
+connection = mysql.connector.connect(host="localhost", database="contacts", user="*****", password="*****")
 
 
 def update_contact_window():
