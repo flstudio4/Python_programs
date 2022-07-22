@@ -1,9 +1,10 @@
 from tkinter import *
 
+MAX = 99999999999999.0
 string_length = 16
-first_value = 0
-second_value = 0
-result = 0
+first_value = 0.0
+second_value = 0.0
+result = 0.0
 is_dot_entered = False
 multiplication_pressed = False
 div_pressed = False
@@ -23,7 +24,7 @@ def output_format(value):
     if 100 < int(value) < 1000:
         value = round(value, 12)
     if 1000 < int(value) < 10000:
-        value = round(value, 12)
+        value = round(value, 11)
     if 10000 < int(value) < 100000:
         value = round(value, 10)
     if 100000 < int(value) < 1000000:
@@ -258,11 +259,11 @@ def multiply():
     global result
     global e
     result = (first_value * second_value)
-    if len(str(result)) > 16:
+    if len(str(result)) > 16 and result > MAX:
         text.set("e")
         e = True
-    if len(str(result)) <= 16:
-        if str(result)[-2:] == ".0":
+    if len(str(result)) <= 16 and result < MAX:
+        if result.is_integer():
             text.set(int(result))
         else:
             text.set(output_format(result))
@@ -272,12 +273,12 @@ def division():
     global result
     global e
     if second_value != 0:
-        result = (first_value / second_value)
-        if str(result)[-2:] == ".0":
+        result = first_value / second_value
+        if result.is_integer():
             text.set(int(result))
         else:
             text.set(output_format(result))
-    if second_value == 0 or len(str(result)) > 16:
+    if second_value == 0 or len(str(result)) > 16 and result > MAX:
         text.set("e")
         e = True
 
@@ -285,12 +286,12 @@ def division():
 def addition():
     global result
     global e
-    result = (first_value + second_value)
-    if len(str(result)) > 16:
+    result = first_value + second_value
+    if len(str(result)) > 16 and result > MAX:
         text.set("e")
         e = True
     if len(str(result)) <= 16:
-        if str(result)[-2:] == ".0":
+        if result.is_integer():
             text.set(int(result))
         else:
             text.set(output_format(result))
@@ -300,11 +301,11 @@ def subtraction():
     global result
     global e
     result = first_value - second_value
-    if len(str(result)) > 16:
+    if len(str(result)) > 16 and result > MAX:
         text.set("e")
         e = True
     if len(str(result)) <= 16:
-        if str(result)[-2:] == ".0":
+        if result.is_integer():
             text.set(int(result))
         else:
             text.set(output_format(result))
@@ -314,12 +315,12 @@ def percentage():
     global result
     global e
     if second_value != 0:
-        result = (first_value / second_value * 100)
-        if len(str(result)) > 16 or second_value == 0:
+        result = first_value / second_value * 100
+        if len(str(result)) > 16 and result > MAX or second_value == 0:
             text.set("e")
             e = True
         if len(str(result)) <= 16:
-            if str(result)[-2:] == ".0":
+            if result.is_integer():
                 text.set(int(result))
             else:
                 text.set(output_format(result))
