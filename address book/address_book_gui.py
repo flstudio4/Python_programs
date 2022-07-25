@@ -6,7 +6,7 @@ from tkinter.ttk import Treeview
 
 import mysql.connector
 
-connection = mysql.connector.connect(host="localhost", database="contacts", user="*****", password="*****")
+connection = mysql.connector.connect(host="localhost", database="contacts", user="*******", password="*******")
 
 
 def update_contact_window():
@@ -96,7 +96,7 @@ def update_contact_window():
     contact_window.title("Update a contact")
     contact_window.geometry("330x425")
     contact_window.focus()
-    contact_window.resizable(0, 0)
+    contact_window.resizable(None, None)
     contact_window.configure(bg="light gray")
     first_frame = Frame(contact_window, bg="light gray")
     first_frame.pack()
@@ -308,8 +308,8 @@ def delete():
     for line in my_data:
         count += 1
         if count == index:
-            first_name = line[1]
-            last_name = line[2]
+            first_name = line[2]
+            last_name = line[1]
             current_id = (line[0],)
 
     if messagebox.askyesno("Item for deletion", f"{first_name.upper()} {last_name.upper()} entry will be deleted, are "
