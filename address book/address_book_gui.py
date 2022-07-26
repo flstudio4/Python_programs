@@ -96,7 +96,7 @@ def update_contact_window():
     contact_window.title("Update a contact")
     contact_window.geometry("330x425")
     contact_window.focus()
-    contact_window.resizable(None, None)
+    contact_window.resizable(0, 0)
     contact_window.configure(bg="light gray")
     first_frame = Frame(contact_window, bg="light gray")
     first_frame.pack()
