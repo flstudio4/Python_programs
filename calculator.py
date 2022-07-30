@@ -264,7 +264,7 @@ def multiply():
         e = True
     if len(str(result)) <= 16 and result < MAX:
         if result.is_integer():
-            text.set(int(result))
+            text.set(str(int(result)))
         else:
             text.set(output_format(result))
 
@@ -275,7 +275,7 @@ def division():
     if second_value != 0:
         result = first_value / second_value
         if result.is_integer():
-            text.set(int(result))
+            text.set(str(int(result)))
         else:
             text.set(output_format(result))
     if second_value == 0 or len(str(result)) > 16 and result > MAX:
@@ -292,7 +292,7 @@ def addition():
         e = True
     if len(str(result)) <= 16:
         if result.is_integer():
-            text.set(int(result))
+            text.set(str(int(result)))
         else:
             text.set(output_format(result))
 
@@ -306,7 +306,7 @@ def subtraction():
         e = True
     if len(str(result)) <= 16:
         if result.is_integer():
-            text.set(int(result))
+            text.set(str(int(result)))
         else:
             text.set(output_format(result))
 
@@ -321,7 +321,7 @@ def percentage():
             e = True
         if len(str(result)) <= 16:
             if result.is_integer():
-                text.set(int(result))
+                text.set(str(int(result)))
             else:
                 text.set(output_format(result))
     if second_value == 0:
