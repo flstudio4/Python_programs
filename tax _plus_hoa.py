@@ -56,7 +56,7 @@ window = Tk()
 window.title("Property Tax Bill")
 window.geometry("500x260")
 window.configure(bg="light blue")
-window.resizable(0, 0)
+window.resizable(False, False)
 
 value = StringVar()
 hoa = StringVar()
