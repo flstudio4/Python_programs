@@ -1,6 +1,7 @@
 from tkinter import *
 
 MAX = 99999999999999.0
+MIN = -9999999999999.0
 string_length = 16
 first_value = 0.0
 second_value = 0.0
@@ -17,35 +18,66 @@ e = False
 
 
 def output_format(value):
-    if int(value) < 10:
-        value = round(value, 14)
-    if 10 < int(value) < 100:
-        value = round(value, 13)
-    if 100 < int(value) < 1000:
-        value = round(value, 12)
-    if 1000 < int(value) < 10000:
-        value = round(value, 11)
-    if 10000 < int(value) < 100000:
-        value = round(value, 10)
-    if 100000 < int(value) < 1000000:
-        value = round(value, 9)
-    if 1000000 < int(value) < 10000000:
-        value = round(value, 8)
-    if 10000000 < int(value) < 100000000:
-        value = round(value, 7)
-    if 100000000 < int(value) < 1000000000:
-        value = round(value, 6)
-    if 1000000000 < int(value) < 10000000000:
-        value = round(value, 5)
-    if 10000000000 < int(value) < 100000000000:
-        value = round(value, 4)
-    if 100000000000 < int(value) < 1000000000000:
-        value = round(value, 3)
-    if 1000000000000 < int(value) < 10000000000000:
-        value = round(value, 2)
-    if 10000000000000 < int(value) < 100000000000000:
-        value = round(value, 1)
-    return value
+    if int(value) > 0:
+        if int(value) < 10:
+            value = round(value, 14)
+        if 10 < int(value) < 100:
+            value = round(value, 13)
+        if 100 < int(value) < 1000:
+            value = round(value, 12)
+        if 1000 < int(value) < 10000:
+            value = round(value, 11)
+        if 10000 < int(value) < 100000:
+            value = round(value, 10)
+        if 100000 < int(value) < 1000000:
+            value = round(value, 9)
+        if 1000000 < int(value) < 10000000:
+            value = round(value, 8)
+        if 10000000 < int(value) < 100000000:
+            value = round(value, 7)
+        if 100000000 < int(value) < 1000000000:
+            value = round(value, 6)
+        if 1000000000 < int(value) < 10000000000:
+            value = round(value, 5)
+        if 10000000000 < int(value) < 100000000000:
+            value = round(value, 4)
+        if 100000000000 < int(value) < 1000000000000:
+            value = round(value, 3)
+        if 1000000000000 < int(value) < 10000000000000:
+            value = round(value, 2)
+        if 10000000000000 < int(value) < 100000000000000:
+            value = round(value, 1)
+        return value
+    if int(value) <= 0:
+        if int(value) == 0:
+            value = round(value, 13)
+        if int(value) > -10:
+            value = round(value, 13)
+        if -10 > int(value) > -100:
+            value = round(value, 12)
+        if -100 > int(value) > -1000:
+            value = round(value, 11)
+        if -1000 > int(value) > -10000:
+            value = round(value, 10)
+        if -10000 > int(value) > -100000:
+            value = round(value, 9)
+        if -100000 > int(value) > -1000000:
+            value = round(value, 8)
+        if -1000000 > int(value) > -10000000:
+            value = round(value, 7)
+        if -10000000 > int(value) > -100000000:
+            value = round(value, 6)
+        if -100000000 > int(value) > -1000000000:
+            value = round(value, 5)
+        if -1000000000 > int(value) > -10000000000:
+            value = round(value, 4)
+        if -10000000000 > int(value) > -100000000000:
+            value = round(value, 3)
+        if -100000000000 > int(value) > -1000000000000:
+            value = round(value, 2)
+        if -1000000000000 > int(value) > -10000000000000:
+            value = round(value, 1)
+        return value
 
 
 def button_1():
@@ -111,7 +143,7 @@ def button_0():
 
 def button_plus_min():
     if len(text.get()) < string_length and text.get() == "" and not block:
-        value = text.get() + str("-")
+        value = "-"
         text.set(value)
 
 
@@ -129,7 +161,7 @@ def common():
         global first_value
         first_value = float(text.get())
         text.set("")
-    is_dot_entered = False
+        is_dot_entered = False
 
 
 def button_percent():
@@ -225,31 +257,31 @@ def button_equals():
         if text.get() == "":
             second_value = first_value
             block = True
-        if text.get() != "":
+        elif text.get() != "":
             second_value = float(text.get())
             equals_pressed = True
 
-        if multiplication_pressed:
-            multiply()
-            multiplication_pressed = False
+            if multiplication_pressed:
+                multiply()
+                multiplication_pressed = False
 
-        if div_pressed:
-            division()
-            div_pressed = False
+            elif div_pressed:
+                division()
+                div_pressed = False
 
-        if sum_pressed:
-            addition()
-            sum_pressed = False
+            elif sum_pressed:
+                addition()
+                sum_pressed = False
 
-        if subtraction_pressed:
-            subtraction()
-            subtraction_pressed = False
+            elif subtraction_pressed:
+                subtraction()
+                subtraction_pressed = False
 
-        if percent_pressed:
-            percentage()
-            percent_pressed = False
+            elif percent_pressed:
+                percentage()
+                percent_pressed = False
 
-        if equals_pressed:
+        elif equals_pressed:
             first_value = result
             equals_pressed = False
             block = True
@@ -259,10 +291,13 @@ def multiply():
     global result
     global e
     result = (first_value * second_value)
-    if len(str(result)) > 16 and result > MAX:
+    if len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
-    if len(str(result)) <= 16 and result < MAX:
+    elif len(str(result)) > string_length and MIN >= result < MAX:
+        text.set(output_format(result))
+
+    elif len(str(result)) <= string_length and MIN <= result < MAX:
         if result.is_integer():
             text.set(str(int(result)))
         else:
@@ -278,19 +313,23 @@ def division():
             text.set(str(int(result)))
         else:
             text.set(output_format(result))
-    if second_value == 0 or len(str(result)) > 16 and result > MAX:
+    elif second_value == 0 or len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
+    elif len(str(result)) > string_length and MIN <= result < MAX:
+        text.set(output_format(result))
 
 
 def addition():
     global result
     global e
     result = first_value + second_value
-    if len(str(result)) > 16 and result > MAX:
+    if len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
-    if len(str(result)) <= 16:
+    elif len(str(result)) > string_length and MIN <= result <= MAX:
+        text.set(output_format(result))
+    elif len(str(result)) <= string_length:
         if result.is_integer():
             text.set(str(int(result)))
         else:
@@ -301,14 +340,16 @@ def subtraction():
     global result
     global e
     result = first_value - second_value
-    if len(str(result)) > 16 and result > MAX:
+    if len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
-    if len(str(result)) <= 16:
+    elif len(str(result)) <= string_length and MIN <= result <= MAX:
         if result.is_integer():
             text.set(str(int(result)))
         else:
             text.set(output_format(result))
+    elif len(str(result)) > string_length and MIN <= result <= MAX:
+        text.set(output_format(result))
 
 
 def percentage():
@@ -316,15 +357,17 @@ def percentage():
     global e
     if second_value != 0:
         result = first_value / second_value * 100
-        if len(str(result)) > 16 and result > MAX or second_value == 0:
+        if len(str(result)) > string_length and MIN > result > MAX or second_value == 0:
             text.set("e")
             e = True
-        if len(str(result)) <= 16:
+        elif len(str(result)) <= string_length and MIN <= result <= MAX:
             if result.is_integer():
                 text.set(str(int(result)))
             else:
                 text.set(output_format(result))
-    if second_value == 0:
+        elif len(str(result)) > string_length and MIN <= result <= MAX:
+            text.set(output_format(result))
+    elif second_value == 0:
         text.set("e")
         e = True
 
