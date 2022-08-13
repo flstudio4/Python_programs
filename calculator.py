@@ -324,7 +324,6 @@ def addition():
     global result
     global e
     result = first_value + second_value
-    print(result)
     if len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
