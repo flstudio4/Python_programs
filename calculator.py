@@ -149,7 +149,7 @@ def button_plus_min():
 
 def button_dot():
     global is_dot_entered
-    if len(text.get()) < string_length and not is_dot_entered and not block:
+    if len(text.get()) < string_length and not is_dot_entered and not block and text.get() != "-":
         value = text.get() + str(".")
         text.set(value)
         is_dot_entered = True
@@ -324,6 +324,7 @@ def addition():
     global result
     global e
     result = first_value + second_value
+    print(result)
     if len(str(result)) > string_length and MIN > result > MAX:
         text.set("e")
         e = True
